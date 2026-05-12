@@ -1,0 +1,22 @@
+# ===============
+# STM32 / IAR EWARM
+# ===============
+Obj/
+Exe/
+List/
+settings/
+*.dep
+*.ewt
+*.dnx
+
+# ===============
+# Makefile / GCC
+# ===============
+build/
+
+# ===============
+# STM32CubeMX & OS
+# ===============
+*.bak
+.DS_Store
+Thumbs.db
