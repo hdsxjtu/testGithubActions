@@ -8,6 +8,9 @@ settings/
 *.dep
 *.ewt
 *.dnx
+*.ewd
+.ninja*
+.*_build_cache
 
 # ===============
 # Makefile / GCC
