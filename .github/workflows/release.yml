@@ -1,0 +1,37 @@
+name: Auto Release Firmware
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install ARM GCC Compiler
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-none-eabi make
+
+    - name: Build STM32 Firmware
+      run: |
+        make clean
+        make -j4
+
+    - name: Upload Firmware to Release
+      uses: softprops/action-gh-release@v2
+      with:
+        name: Release ${{ github.ref_name }}
+        generate_release_notes: true
+        files: |
+          build/*.bin
+          build/*.hex
+          build/*.elf
